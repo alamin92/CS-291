@@ -1,0 +1,72 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+struct song{
+  string title;
+  string artist;
+  int year;
+  string producer;
+};
+
+int main(){
+
+vector<song>mySong;
+  song song1, song2;
+  
+  song1.title="fvdsf";
+  song1.artist="csdc";
+  song1.year=2005;
+  song2.title="fv";
+  song2.year=4334;
+  mySong.push_back(song1);
+  mySong.push_back(song2);
+
+  for(auto & x:mySong){
+    cout<<x.title<<"by"<<x.artist<<" was releasd"<<x.year<<endl;
+  }
+
+  //for( auto itr=mySong.begin(); itr!=mySong.end; itr++)
+  //cout<<*itr<<endl;
+
+return 0;
+}
+
+
+/*
+void increaseOne(vector<int> &vec){
+  for(int i=0; i<vec.size(); i++)
+ vec[i]++;
+  
+}
+void displayVec(vector<int>vec){
+for(auto x:vec)
+cout<<x<<endl;
+
+
+}
+
+void insertLast(vector<int>&vec, int value){
+  vec.push_back(value);
+}
+
+int main(){
+  vector<int>myVec={150,150,150,150,150};
+  
+  displayVec(myVec);
+  increaseOne(myVec);
+  displayVec(myVec);
+
+//myVec.push_back(200);
+//myVec.insert(myVec.begin(),20);
+//for(auto itr=myVec.begin()+1; itr!=myVec.end()-1; itr++)
+  cout<<*itr<<endl;
+
+  insertLast(myVec,10);
+  for( auto itr=myVec.begin(); itr!=myVec.end();itr++)
+  cout<<*itr<<endl;
+
+return 0;
+
+}
+*/
