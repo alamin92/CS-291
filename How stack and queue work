@@ -1,0 +1,163 @@
+#include <iostream>
+#include <stack>
+#include <queue>
+using namespace std;
+
+
+void printFromStack(string expr){
+    stack<char> myStack;
+    for(int i=0; i<expr.length(); i++){
+        //Insert code here to push each character onto the stack
+        myStack.push(expr[i]);
+    }
+    
+    cout << "My stack is popped in this order" << endl;
+    while(!myStack.empty()){
+        //Insert code here to cout the top of the stack one by one
+        //Pop each one after it’s printed out
+        cout<<myStack.top()<<endl;
+        myStack.pop();
+        
+    }
+    cout << endl;
+    
+}
+
+
+void printFromQueue(string expr){
+    queue<char> myQueue;
+
+    for(int i=0; i<=expr.length(); i++)
+    
+        //Insert code here to push each character onto the queue
+        myQueue.push(expr[i]);
+    cout << "My queue is dequeued in this order" << endl;
+  while(!myQueue.empty()){
+    cout<<myQueue.front()<<endl;
+    myQueue.pop();
+  }
+    //Insert code here to cout the front of the queue one by one
+    //Pop (or dequeue) each one after it’s printed out
+    
+    cout << endl;
+    
+}
+
+        //Complete your code here!
+
+    
+  
+bool isPalindrome(string expr)
+
+{
+
+    queue<char> myQueue;
+
+    stack<char> myStack;
+
+    bool isPalindrome = true;
+
+   
+
+    int i;
+
+   
+
+    // raverse the string
+
+    for( i = 0 ; i < expr.size() ; i++ )
+
+        // push the character into queue
+
+        myQueue.push(expr[i]);
+
+       
+
+    // raverse the string
+
+    for( i = 0 ; i < expr.length() ; i++ )
+
+        // push the character into stack
+
+        myStack.push(expr[i]);
+
+       
+
+    while( isPalindrome == true && ( !myStack.empty() && !myQueue.empty() ) )
+
+    {
+
+        // if the elements are not same
+
+        if( myStack.top() != myQueue.front() )
+
+        {
+
+            isPalindrome = false;
+
+        }
+
+    }
+
+   
+
+    return isPalindrome;
+
+}
+
+int main()
+
+{
+
+    cout<<"Please enter an expression that you want to store:\n";
+
+    string expr;
+
+   
+
+    cin>>expr;
+
+   
+
+    if( isPalindrome(expr) )
+
+        cout<<"Your expression: "<<expr<<" is a palindrome!";
+
+    else
+
+        cout<<"Your expression: "<<expr<<" is not a palindrome!";
+
+       
+
+    return 0;
+
+} 
+    }
+    return isPalindrome;
+}
+
+int main(int argc, const char * argv[])
+{
+    string expression;
+    while (expression != "end"){
+        cout << "Please enter an expression that you want to store: " << endl;
+        cin >> expression;
+        
+        printFromStack(expression);
+        
+        printFromQueue(expression);
+        
+        
+        cout << "Your expression: " << expression << " is " << (isPalindrome(expression)? "a palindrome!": "not a palindrome!")  << endl;
+
+        
+        
+    }
+    
+
+    return 0;
+
+}
+  
+
+
