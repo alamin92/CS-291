@@ -1,0 +1,178 @@
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template <typename Object>
+class MinHeap {
+private:
+vector<Object> heap; // heap array
+int currentSize;    // the number of element in the heap
+public:
+MinHeap(int capacity = 100) {
+currentSize = 0;
+heap.resize(capacity);
+}
+void display()
+{
+for (int i = 1;i <= currentSize;i++)
+{
+cout << heap[i] << " ";
+}
+}
+void insert(Object x) {
+if (currentSize == heap.size() - 1)
+heap.resize(heap.size() * 2);
+
+currentSize++;
+int i = currentSize;
+
+while (x > heap[i / 2] && i / 2 >= 1) {
+heap[i] = heap[i / 2];
+i = i / 2;
+}
+heap[i] = x;
+}
+
+
+void deleteMax() {
+if (isEmpty()) throw  "Heap is Empty!!";
+heap[1] = heap[currentSize];
+currentSize--;
+percolateDown(1);
+}
+
+void percolateDown(int i) {
+
+int leftchild = 2 * i;
+int rightchild = 2 * i + 1;
+
+//if leaf node, stop
+if (leftchild > currentSize) return; //i is a leaf node
+
+int max = i;
+
+if (heap[leftchild] > heap[i])
+max = leftchild;
+
+if (heap[rightchild] > heap[max] && rightchild <= currentSize)
+max = rightchild;
+
+if (max != i) {
+
+swap(heap[max], heap[i]);
+percolateDown(max);
+}
+
+}
+int getHeapSize()
+{
+return currentSize;
+}
+int findMax()
+{
+return heap[1];
+}
+bool isEmpty() {
+return currentSize == 0;
+}
+
+
+
+};
+void insertionSort(vector<int> &arr)
+{
+for (int i = 1; i < arr.size(); i++)
+{
+int temp = arr[i];
+int j = i - 1;
+
+//moving the element to its position
+while (j >= 0 && arr[j] > temp)
+{
+arr[j + 1] = arr[j];
+j = j - 1;
+}
+arr[j + 1] = temp;
+}
+}
+int findKey(vector<int> & v, int num)
+{
+for (int i = 0;i < v.size();i++)
+{
+if (num == v[i])
+return i;
+}
+return -1;//if not found
+}
+
+int main(int argc, const char * argv[]) {
+try {
+MinHeap<int> myHeap(100);
+myHeap.insert(18);
+myHeap.insert(26);
+myHeap.insert(30);
+myHeap.insert(55);
+myHeap.insert(21);
+myHeap.insert(22);
+myHeap.insert(13);
+myHeap.insert(9);
+myHeap.insert(14);
+myHeap.insert(20);
+myHeap.insert(17);
+myHeap.insert(11);
+
+myHeap.insert(19);
+//before deletion
+cout << "Max Heap is : " ;
+myHeap.display();
+cout << endl << "Heap Size is : " << myHeap.getHeapSize() << endl;
+cout << "Max of Heap is: " << myHeap.findMax() << endl;
+
+myHeap.deleteMax();
+
+//heap after deletion
+cout << "Max Heap is : " ;
+myHeap.display();
+cout <<endl<<"Heap Size is : " <<myHeap.getHeapSize() << endl;
+cout << "Max of Heap is: "<<myHeap.findMax() << endl;
+}
+catch (const char* msg)
+{
+cout << "Error : " << msg << endl;
+}
+//tast 2
+//4
+//insertion Sort
+vector<int> arr = { 77,200,99, 57, 69, 45, 101, 67, 120, 132, 87, 157,
+170, 12 };
+cout << "\n\n\nUnsorted array is:\n";
+for (int i = 0;i < arr.size();i++)
+{
+cout << arr[i] << " ";
+}
+insertionSort(arr);
+cout << "Sorted array is:\n";
+
+for (int i = 0;i < arr.size();i++)
+{
+cout << arr[i] << " ";
+}
+//5
+cout << "\n\n\nEnter the number that you would like to find :  \n";
+int num;
+cin >> num;
+int ind = findKey(arr,num);
+if (ind != -1)
+{
+cout << "The number " << num << " is found at index " << ind << endl;
+}
+else
+{
+cout << "The number " << num << " cannot be found! " <<endl;
+
+}
+return 0;
+
+
+}
